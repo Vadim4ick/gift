@@ -1,17 +1,15 @@
 import { Sparkles, ArrowRight } from "lucide-react";
-import { Footer } from "@/components/Footer";
 import { Categories } from "@/components/Categories";
-import { Header } from "@/components/Header";
 import { Button } from "@/shared/ui/button";
+import { Container } from "@/components/Container";
+import Link from "next/link";
 
 export default function GiftGenius() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-purple-50 via-pink-50 to-blue-50">
-      <Header />
-
+    <div className="mt-[--header-height] grow">
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto text-center">
+        <Container className="text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-8 animate-pulse">
             <Sparkles className="w-4 h-4 text-purple-600" />
             <span className="text-sm font-medium text-purple-700">
@@ -32,10 +30,12 @@ export default function GiftGenius() {
             чтобы предложить подарок, который запомнится навсегда
           </p>
 
-          <Button size={"lg"} className="text-lg font-semibold">
-            Найти подарок мечты
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link href="/form">
+            <Button size={"lg"} className="text-lg font-semibold">
+              Найти подарок мечты
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
 
           <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto">
             <div className="text-center">
@@ -57,12 +57,12 @@ export default function GiftGenius() {
               <div className="text-gray-600">Попадание в цель</div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* How It Works */}
       <section id="how" className="py-20 px-6 bg-white/50">
-        <div className="max-w-7xl mx-auto">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-4 text-gray-800">
               Магия в{" "}
@@ -113,14 +113,14 @@ export default function GiftGenius() {
               </p>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       <Categories />
 
       {/* CTA Section */}
       <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 rounded-3xl p-12 text-white relative overflow-hidden">
+        <Container className="max-w-4xl text-center bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 rounded-3xl p-12 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
 
           <div className="relative z-10">
@@ -137,10 +137,8 @@ export default function GiftGenius() {
               <Sparkles className="w-5 h-5" />
             </button>
           </div>
-        </div>
+        </Container>
       </section>
-
-      <Footer />
     </div>
   );
 }

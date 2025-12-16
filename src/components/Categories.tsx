@@ -2,13 +2,14 @@
 
 import { categories } from "@/shared/const/index.const";
 import { useState } from "react";
+import { Container } from "./Container";
 
 const Categories = () => {
   const [hoveredCard, setHoveredCard] = useState<number>();
 
   return (
     <section id="categories" className="py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+      <Container>
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-4 text-gray-800">
             Подарки для{" "}
@@ -49,7 +50,7 @@ const Categories = () => {
             );
           })}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
