@@ -30,13 +30,13 @@ const Header = () => {
 
         <div className="hidden md:flex items-center gap-8">
           <Link
-            href="#how"
+            href="/#how"
             className="text-gray-700 hover:text-purple-600 transition-colors"
           >
             Как работает
           </Link>
           <Link
-            href="#categories"
+            href="/#categories"
             className="text-gray-700 hover:text-purple-600 transition-colors"
           >
             Категории

@@ -1,7 +1,17 @@
 "use client";
 
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/input";
+import { Textarea } from "@/shared/ui/textarea";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/ui/select";
 
 const recipients = [
   { value: "man", label: "Мужчина", emoji: "👨" },
@@ -58,8 +68,7 @@ const FormPage = () => {
   });
 
   const handleSubmit = async (formData: FormData) => {
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    console.log("Form submitted:", Object.fromEntries(formData));
   };
 
   return (
@@ -113,11 +122,10 @@ const FormPage = () => {
 
             {formData.recipient === "other" && (
               <div className="mt-4">
-                <input
+                <Input
                   type="text"
                   name="customRecipient"
                   placeholder="Укажите кто получатель..."
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-600 focus:outline-none transition-colors"
                   required
                 />
               </div>
@@ -129,14 +137,14 @@ const FormPage = () => {
             <label className="block text-lg font-semibold text-gray-800 mb-4">
               Возраст <span className="text-red-500">*</span>
             </label>
-            <input
+
+            <Input
               type="number"
               name="age"
               placeholder="Введите возраст..."
               min="1"
               max="120"
               required
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-600 focus:outline-none transition-colors text-lg"
             />
           </div>
 
@@ -190,21 +198,19 @@ const FormPage = () => {
             <label className="block text-lg font-semibold text-gray-800 mb-4">
               Повод <span className="text-red-500">*</span>
             </label>
-            <select
-              name="occasion"
-              required
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-600 focus:outline-none transition-colors text-lg appearance-none bg-white cursor-pointer"
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Выберите повод...
-              </option>
-              {occasions.map((occ) => (
-                <option key={occ} value={occ}>
-                  {occ}
-                </option>
-              ))}
-            </select>
+
+            <Select name="occasion" required>
+              <SelectTrigger className="w-full h-12.5 border-2 rounded-xl cursor-pointer">
+                <SelectValue placeholder="Выберите повод..." />
+              </SelectTrigger>
+              <SelectContent>
+                {occasions.map((occ) => (
+                  <SelectItem className="cursor-pointer" key={occ} value={occ}>
+                    {occ}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Description */}
@@ -215,26 +221,23 @@ const FormPage = () => {
                 (опционально)
               </span>
             </label>
-            <textarea
+
+            <Textarea
               name="description"
               placeholder="Расскажите об увлечениях, характере, предпочтениях получателя..."
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-600 focus:outline-none transition-colors text-lg resize-none"
             />
+
             <p className="text-sm text-gray-500 mt-2">
               💡 Например: любит читать фэнтези, занимается йогой,
               коллекционирует винил
             </p>
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-4 bg-linear-to-r from-purple-600 to-pink-600 text-white rounded-xl text-lg font-semibold hover:shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 group"
-          >
+          <Button type="submit" className="w-full text-xl" size={"lg"}>
             <Sparkles className="w-5 h-5" />
             Подобрать подарок
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Button>
         </form>
       </div>
     </section>
