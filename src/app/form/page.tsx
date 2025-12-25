@@ -12,49 +12,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select";
-
-const recipients = [
-  { value: "man", label: "Мужчина", emoji: "👨" },
-  { value: "woman", label: "Женщина", emoji: "👩" },
-  { value: "boy", label: "Мальчик", emoji: "👦" },
-  { value: "girl", label: "Девочка", emoji: "👧" },
-  { value: "grandpa", label: "Дедушка", emoji: "👴" },
-  { value: "grandma", label: "Бабушка", emoji: "👵" },
-  { value: "colleague", label: "Коллега", emoji: "💼" },
-  { value: "friend", label: "Друг/Подруга", emoji: "🤝" },
-  { value: "other", label: "Другое", emoji: "✨" },
-];
-
-const categories = [
-  "Электроника",
-  "Книги",
-  "Косметика",
-  "Спорт",
-  "Хобби",
-  "Украшения",
-  "Одежда",
-  "Игрушки",
-  "Дом",
-  "Handmade",
-];
-
-const priceRanges = [
-  { value: "budget", label: "До 2000₽" },
-  { value: "medium", label: "2000₽ - 5000₽" },
-  { value: "premium", label: "5000₽ - 15000₽" },
-  { value: "luxury", label: "От 15000₽" },
-];
-
-const occasions = [
-  "День рождения",
-  "Новый год",
-  "Свадьба",
-  "8 марта",
-  "23 февраля",
-  "Юбилей",
-  "Годовщина",
-  "Просто так",
-];
+import {
+  categories,
+  occasions,
+  priceRanges,
+  recipients,
+} from "@/shared/const/index.const";
 
 const FormPage = () => {
   const [formData, setFormData] = useState({
@@ -72,7 +35,7 @@ const FormPage = () => {
   };
 
   return (
-    <section className="pt-32 pb-20 px-6 mt-(--header-height) grow">
+    <section className="pt-10 pb-20 px-6 mt-(--header-height) grow">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4">

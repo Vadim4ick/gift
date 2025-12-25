@@ -1,14 +1,9 @@
-"use client";
-
-import { useState } from "react";
-import { Gift, Menu, X } from "lucide-react";
+import { Gift } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/shared/ui/button";
 import { Container } from "./Container";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <header className="fixed top-0 w-full bg-white/80 backdrop-blur-lg z-50 border-b border-purple-100 h-(--header-height)">
       <Container className="py-4 flex items-center justify-between">
@@ -21,23 +16,16 @@ const Header = () => {
           </span>
         </Link>
 
-        <button
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X /> : <Menu />}
-        </button>
-
-        <div className="hidden md:flex items-center gap-8">
+        <div className="flex items-center gap-8">
           <Link
             href="/#how"
-            className="text-gray-700 hover:text-purple-600 transition-colors"
+            className="text-gray-700 hover:text-purple-600 transition-colors hidden md:block"
           >
             Как работает
           </Link>
           <Link
             href="/#categories"
-            className="text-gray-700 hover:text-purple-600 transition-colors"
+            className="text-gray-700 hover:text-purple-600 transition-colors hidden md:block"
           >
             Категории
           </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import { categories } from "@/shared/const/index.const";
+import { giftVariants } from "@/shared/const/index.const";
 import { useState } from "react";
 import { Container } from "./Container";
 
@@ -23,7 +23,7 @@ const Categories = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {categories.map((cat, idx) => {
+          {giftVariants.map((cat, idx) => {
             const Icon = cat.icon;
             return (
               <div
