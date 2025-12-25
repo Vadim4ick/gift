@@ -1,5 +1,5 @@
 import { Gift } from "lucide-react";
-import { Container } from "./Container";
+import { Container } from "../shared/ui/Container";
 
 const Footer = () => {
   return (

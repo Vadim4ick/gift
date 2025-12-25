@@ -1,0 +1,1 @@
+export { CtaBaner } from "./CtaBaner";

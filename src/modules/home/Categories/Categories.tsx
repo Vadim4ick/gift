@@ -1,10 +1,10 @@
 "use client";
 
-import { giftVariants } from "@/shared/const/index.const";
-import { useState } from "react";
-import { Container } from "./Container";
+import { giftVariants } from "./_model/const";
+import { memo, useState } from "react";
+import { Container } from "../../../shared/ui/Container";
 
-const Categories = () => {
+const Categories = memo(() => {
   const [hoveredCard, setHoveredCard] = useState<number>();
 
   return (
@@ -53,6 +53,6 @@ const Categories = () => {
       </Container>
     </section>
   );
-};
+});
 
 export { Categories };
