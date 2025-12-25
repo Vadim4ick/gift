@@ -1,13 +1,7 @@
-"use client";
-
-import { useState } from "react";
-
 import { FormGifts } from "@/modules/form/form-gifts";
 import { ResultsGifts } from "@/modules/form/results-gifts";
 
 const FormPage = () => {
-  const [showResults, setShowResults] = useState(false);
-
   return (
     <section className="pt-10 pb-20 px-6 mt-(--header-height) grow">
       <div className="max-w-4xl mx-auto">
@@ -22,9 +16,9 @@ const FormPage = () => {
           </p>
         </div>
 
-        <FormGifts setShowResults={setShowResults} />
+        <FormGifts />
 
-        {showResults && <ResultsGifts setShowResults={setShowResults} />}
+        <ResultsGifts />
       </div>
     </section>
   );
