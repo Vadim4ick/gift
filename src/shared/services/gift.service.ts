@@ -6,9 +6,10 @@ class GiftService {
 
   async getAllIdeas(body: GiftFormValues) {
     try {
-      const response = await $api.post<GiftIdeasResponse>(`${this._PATH}`, {
-        data: body,
-      });
+      const response = await $api.post<GiftIdeasResponse>(
+        `${this._PATH}`,
+        body,
+      );
       return response.data;
     } catch (error) {
       console.error("Error fetching gift ideas:", error);
