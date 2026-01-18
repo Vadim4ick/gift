@@ -13,44 +13,30 @@ import {
 } from "@/shared/ui/select";
 import { Button } from "@/shared/ui/button";
 import { categories, occasions, priceRanges, recipients } from "./_model/const";
-import { useAtom } from "jotai";
-import { giftResultAtom } from "@/state/show-result";
 import { parseGiftFormData } from "./_model/helpers";
-import { giftService } from "@/shared/services/gift.service";
 import { FormOverlayLoader } from "./FormOverlayLoader";
+import { useGiftIdeas } from "../_model/hooks";
 
 const FormGifts = memo(() => {
-  const [_, setGiftResult] = useAtom(giftResultAtom);
-
-  const [isLoading, setIsLoading] = useState(false);
+  const { submit, isLoading } = useGiftIdeas();
   const [recipient, setRecipient] = useState("");
-
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formRef.current || isLoading) return;
+    if (!formRef.current) return;
 
-    setIsLoading(true);
+    const formData = new FormData(formRef.current);
+    const values = parseGiftFormData(formData);
 
-    try {
-      const formData = new FormData(formRef.current);
-      const values = parseGiftFormData(formData);
+    await submit(values);
 
-      const res = await giftService.getAllIdeas(values);
-      setGiftResult(res.ideas);
-
-      setTimeout(() => {
-        document.getElementById("results")?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }, 100);
-    } finally {
-      setIsLoading(false);
-    }
+    setTimeout(() => {
+      document
+        .getElementById("results")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
-
   return (
     <form
       ref={formRef}

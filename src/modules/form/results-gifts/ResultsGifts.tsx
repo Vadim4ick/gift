@@ -1,14 +1,15 @@
 "use client";
 
-import { mockGifts } from "@/shared/const/index.const";
 import { Button } from "@/shared/ui/button";
 import { giftResultAtom } from "@/state/show-result";
 import { useAtom } from "jotai";
-import { ExternalLink, Heart, TrendingUp } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { memo } from "react";
+import { useGiftIdeas } from "../_model/hooks";
 
 const ResultsGifts = memo(() => {
-  const [giftResults, setGiftResult] = useAtom(giftResultAtom);
+  const [giftResults] = useAtom(giftResultAtom);
+  const { rerun, isLoading } = useGiftIdeas();
 
   if (giftResults.length === 0) return null;
 
@@ -115,17 +116,29 @@ const ResultsGifts = memo(() => {
         ))}
       </div>
 
-      <div className="mt-10 text-center">
+      <div className="mt-10 text-center flex flex-col sm:flex-row gap-3 justify-center">
         <Button
-          onClick={() => {
-            setGiftResult([]);
-            window.scrollTo({ top: 0, behavior: "smooth" });
+          onClick={async () => {
+            await rerun();
+            // по желанию: оставить скролл на results
+            document
+              .getElementById("results")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
-          // variant="outline"
+          disabled={isLoading}
           size="lg"
           className="border-2 border-purple-300 hover:bg-purple-50"
         >
           Подобрать другой подарок
+        </Button>
+
+        <Button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          size="lg"
+          disabled={isLoading}
+          className="border-2 border-purple-300 hover:bg-purple-50"
+        >
+          Изменить параметры
         </Button>
       </div>
     </div>
