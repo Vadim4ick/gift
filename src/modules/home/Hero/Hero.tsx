@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-8 animate-pulse">
           <Sparkles className="w-4 h-4 text-purple-600" />
           <span className="text-sm font-medium text-purple-700">
-            Powered by Advanced AI
+            Работает на основе передового искусственного интеллекта.
           </span>
         </div>
 

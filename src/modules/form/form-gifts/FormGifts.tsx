@@ -14,10 +14,12 @@ import {
 import { Button } from "@/shared/ui/button";
 import { categories, occasions, priceRanges, recipients } from "./_model/const";
 import { useAtom } from "jotai";
-import { showResultAtom } from "@/state/show-result";
+import { giftResultAtom } from "@/state/show-result";
+import { parseGiftFormData } from "./_model/helpers";
+import { giftService } from "@/shared/services/gift.service";
 
 const FormGifts = memo(() => {
-  const [_, setShowResults] = useAtom(showResultAtom);
+  const [_, setGiftResult] = useAtom(giftResultAtom);
 
   const [isLoading, setIsLoading] = useState(false);
   const [recipient, setRecipient] = useState("");
@@ -25,21 +27,22 @@ const FormGifts = memo(() => {
   const handleSubmit = async (formData: FormData) => {
     setIsLoading(true);
 
-    console.log("Form submitted:", Object.fromEntries(formData));
+    try {
+      const values = parseGiftFormData(formData);
 
-    // Имитация загрузки
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+      const res = await giftService.getAllIdeas(values);
 
-    setIsLoading(false);
-    setShowResults(true);
+      setGiftResult(res.ideas);
 
-    // Прокрутка к результатам
-    setTimeout(() => {
-      document.getElementById("results")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 100);
+      setTimeout(() => {
+        document.getElementById("results")?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -99,7 +102,7 @@ const FormGifts = memo(() => {
           name="age"
           placeholder="Введите возраст..."
           min="1"
-          max="120"
+          max="90"
           required
         />
       </div>

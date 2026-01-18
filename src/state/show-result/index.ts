@@ -1,5 +1,6 @@
+import { GiftIdea } from "@/shared/types/gift-form.type";
 import { atom } from "jotai";
 
-const showResultAtom = atom(false);
+const giftResultAtom = atom<GiftIdea[]>([]);
 
-export { showResultAtom };
+export { giftResultAtom };
