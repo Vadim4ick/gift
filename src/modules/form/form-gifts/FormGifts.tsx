@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState } from "react";
+import { memo, useRef, useState } from "react";
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/textarea";
 import { ArrowRight, Sparkles } from "lucide-react";
@@ -17,6 +17,7 @@ import { useAtom } from "jotai";
 import { giftResultAtom } from "@/state/show-result";
 import { parseGiftFormData } from "./_model/helpers";
 import { giftService } from "@/shared/services/gift.service";
+import { FormOverlayLoader } from "./FormOverlayLoader";
 
 const FormGifts = memo(() => {
   const [_, setGiftResult] = useAtom(giftResultAtom);
@@ -24,14 +25,19 @@ const FormGifts = memo(() => {
   const [isLoading, setIsLoading] = useState(false);
   const [recipient, setRecipient] = useState("");
 
-  const handleSubmit = async (formData: FormData) => {
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current || isLoading) return;
+
     setIsLoading(true);
 
     try {
+      const formData = new FormData(formRef.current);
       const values = parseGiftFormData(formData);
 
       const res = await giftService.getAllIdeas(values);
-
       setGiftResult(res.ideas);
 
       setTimeout(() => {
@@ -47,9 +53,14 @@ const FormGifts = memo(() => {
 
   return (
     <form
-      action={handleSubmit}
+      ref={formRef}
+      // action={handleSubmit}
+      onSubmit={handleSubmit}
       className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border-2 border-purple-100"
     >
+      {/* оверлей блокирует любые клики, форма не очищается */}
+      {isLoading && <FormOverlayLoader />}
+
       {/* Recipient Selection */}
       <div className="mb-8">
         <label className="block text-lg font-semibold text-gray-800 mb-4">
@@ -68,6 +79,7 @@ const FormGifts = memo(() => {
                 required
                 className="peer sr-only"
                 onChange={(e) => setRecipient(e.target.value)}
+                disabled={isLoading}
               />
               <div className="p-4 border-2 border-gray-200 rounded-2xl text-center transition-all hover:border-purple-300 hover:shadow-md peer-checked:border-purple-600 peer-checked:bg-linear-to-br peer-checked:from-purple-50 peer-checked:to-pink-50 peer-checked:shadow-lg">
                 <div className="text-3xl mb-2">{recipient.emoji}</div>
@@ -104,6 +116,7 @@ const FormGifts = memo(() => {
           min="1"
           max="90"
           required
+          disabled={isLoading}
         />
       </div>
 
@@ -120,6 +133,7 @@ const FormGifts = memo(() => {
                 name="category"
                 value={cat}
                 className="peer sr-only"
+                disabled={isLoading}
               />
               <div className="px-4 py-2 border-2 border-gray-200 rounded-full text-sm font-medium text-gray-700 transition-all hover:border-purple-300 hover:shadow-sm peer-checked:border-purple-600 peer-checked:bg-linear-to-r peer-checked:from-purple-600 peer-checked:to-pink-600 peer-checked:text-white peer-checked:shadow-md">
                 {cat}
@@ -143,6 +157,7 @@ const FormGifts = memo(() => {
                 value={range.value}
                 required
                 className="peer sr-only"
+                disabled={isLoading}
               />
               <div className="p-4 border-2 border-gray-200 rounded-xl text-center font-medium text-gray-700 transition-all hover:border-purple-300 hover:shadow-sm peer-checked:border-purple-600 peer-checked:bg-linear-to-br peer-checked:from-purple-50 peer-checked:to-pink-50 peer-checked:text-purple-700 peer-checked:shadow-md">
                 {range.label}
@@ -158,7 +173,7 @@ const FormGifts = memo(() => {
           Повод <span className="text-red-500">*</span>
         </label>
 
-        <Select name="occasion" required>
+        <Select name="occasion" required disabled={isLoading}>
           <SelectTrigger className="w-full h-12.5 border-2 rounded-xl cursor-pointer">
             <SelectValue placeholder="Выберите повод..." />
           </SelectTrigger>
@@ -182,6 +197,7 @@ const FormGifts = memo(() => {
         </label>
 
         <Textarea
+          disabled={isLoading}
           name="description"
           placeholder="Расскажите об увлечениях, характере, предпочтениях получателя..."
         />
@@ -201,13 +217,13 @@ const FormGifts = memo(() => {
         {isLoading ? (
           <>
             <Sparkles className="w-5 h-5 animate-spin" />
-            Подбираем подарки...
+            Подбираем подарки…
           </>
         ) : (
           <>
             <Sparkles className="w-5 h-5" />
             Подобрать подарок
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </>
         )}
       </Button>
