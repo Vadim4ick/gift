@@ -30,11 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.detect-changes.outputs.changed == 'true'
     steps:
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '22.14.0'
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -70,12 +65,12 @@ jobs:
           cp ~/secrets/giftjs/.env .env
 
           echo "📦 Устанавливаем зависимости!!!"
-          npm install
+          npm сi
 
 
-          echo "⚙️ Билд + Миграции"
+          echo "⚙️ Билд  Next.js"
           # Установка на ограничение потребляемой памяти
-          NODE_OPTIONS="--max-old-space-size=2536 --no-deprecation" npm run ci
+          NODE_OPTIONS="--max-old-space-size=2536 --no-deprecation" npm run build
 
           echo "🚀 Запускаем через PM2"
           if pm2 list | grep -q giftjs-app; then
