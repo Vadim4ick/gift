@@ -65,7 +65,7 @@ jobs:
           cp ~/secrets/giftjs/.env .env
 
           echo "📦 Устанавливаем зависимости!!!"
-          npm сi
+          npm ci
 
 
           echo "⚙️ Билд  Next.js"
