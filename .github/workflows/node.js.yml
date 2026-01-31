@@ -67,7 +67,7 @@ jobs:
           cd ~/giftjs-app
 
           echo "📦 Копируем .env"
-          cp ~/secrets/env .env
+          cp ~/secrets/giftjs/.env .env
 
           echo "📦 Устанавливаем зависимости!!!"
           npm install
