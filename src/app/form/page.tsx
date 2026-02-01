@@ -3,7 +3,7 @@ import { ResultsGifts } from "@/modules/form/results-gifts";
 
 const FormPage = () => {
   return (
-    <section className="pt-10 pb-20 px-6 mt-(--header-height) grow">
+    <section className="pt-10 pb-20 px-4 mt-(--header-height) grow">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4">

@@ -6,7 +6,7 @@ export const recipients = [
   { value: "grandpa", label: "Дедушка", emoji: "👴" },
   { value: "grandma", label: "Бабушка", emoji: "👵" },
   { value: "colleague", label: "Коллега", emoji: "💼" },
-  { value: "friend", label: "Друг/Подруга", emoji: "🤝" },
+  { value: "friend", label: "Друг", emoji: "🤝" },
   { value: "other", label: "Другое", emoji: "✨" },
 ];
 

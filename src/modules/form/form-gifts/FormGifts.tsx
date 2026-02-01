@@ -42,7 +42,7 @@ const FormGifts = memo(() => {
       ref={formRef}
       // action={handleSubmit}
       onSubmit={handleSubmit}
-      className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border-2 border-purple-100"
+      className="bg-white rounded-3xl p-4 md:p-12 shadow-xl border-2 border-purple-100"
     >
       {/* оверлей блокирует любые клики, форма не очищается */}
       {isLoading && <FormOverlayLoader />}
@@ -134,7 +134,7 @@ const FormGifts = memo(() => {
         <label className="block text-lg font-semibold text-gray-800 mb-4">
           Ценовой диапазон <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {priceRanges.map((range) => (
             <label key={range.value} className="cursor-pointer">
               <input
@@ -186,6 +186,7 @@ const FormGifts = memo(() => {
           disabled={isLoading}
           name="description"
           placeholder="Расскажите об увлечениях, характере, предпочтениях получателя..."
+          className="max-md:min-h-[130px]"
         />
 
         <p className="text-sm text-gray-500 mt-2">
