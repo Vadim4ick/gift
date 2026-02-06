@@ -1,5 +1,10 @@
 import { FormGifts } from "@/modules/form/form-gifts";
 import { ResultsGifts } from "@/modules/form/results-gifts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Подбор подарка | Gifts",
+};
 
 const FormPage = () => {
   return (

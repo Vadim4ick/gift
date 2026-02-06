@@ -1,6 +1,11 @@
 import { getAllPostsMeta } from "@/shared/lib/blog";
 import { Container } from "@/shared/ui/Container";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Блог | Gifts",
+};
 
 const PageBlog = () => {
   const posts = getAllPostsMeta();

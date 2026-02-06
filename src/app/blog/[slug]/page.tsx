@@ -1,11 +1,57 @@
 import { getPostBySlug, getPostSlugs } from "@/shared/lib/blog";
 import { Container } from "@/shared/ui/Container";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  try {
+    const post = getPostBySlug(slug);
+
+    const title = post.meta.title;
+    const description = post.meta.description ?? "";
+    const publishedTime = post.meta.date
+      ? new Date(post.meta.date).toISOString()
+      : undefined;
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `/blog/${post.meta.slug}`,
+      },
+      openGraph: {
+        title,
+        description,
+        type: "article",
+        // url, // если есть siteUrl
+        publishedTime,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+      },
+    };
+  } catch {
+    // для несуществующего slug
+    return {
+      title: "Пост не найден",
+      description: "Запрошенная статья не существует.",
+      robots: { index: false, follow: false },
+    };
+  }
 }
 
 export default async function BlogPostPage({

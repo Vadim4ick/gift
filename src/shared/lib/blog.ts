@@ -5,8 +5,6 @@ import matter from "gray-matter";
 
 const BLOG_DIR = path.join(process.cwd(), "src", "shared", "content", "blog");
 
-console.log(BLOG_DIR);
-
 export type BlogPostMeta = {
   slug: string;
   title: string;
