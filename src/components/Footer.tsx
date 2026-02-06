@@ -24,7 +24,7 @@ const Footer = () => {
             Политика
           </a>
         </div> */}
-        <div className="mt- text-sm text-gray-500">
+        <div className="mt-2 text-sm text-gray-500">
           © {new Date().getFullYear()} GiftGenius. Все права защищены.
         </div>
       </Container>

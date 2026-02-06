@@ -6,9 +6,9 @@ const PageBlog = () => {
   const posts = getAllPostsMeta();
 
   return (
-    <section className="grow mt-[var(--header-height)]">
+    <section className="grow mt-[var(--header-height)] py-6">
       <Container>
-        <div className="flex flex-col gap-4 py-4">
+        <div className="flex flex-col gap-4">
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
             Блог
           </h1>
