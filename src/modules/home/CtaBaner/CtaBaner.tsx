@@ -1,5 +1,6 @@
 import { Container } from "@/shared/ui/Container";
 import { Sparkles } from "lucide-react";
+import Link from "next/link";
 
 const CtaBaner = () => {
   return (
@@ -16,10 +17,12 @@ const CtaBaner = () => {
             Начните подбор подарка прямо сейчас — это бесплатно и займет меньше
             минуты
           </p>
-          <button className="px-8 py-4 max-md:text-sm bg-white text-purple-600 rounded-full text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-2">
-            Попробовать GiftGenius
-            <Sparkles className="w-5 h-5" />
-          </button>
+          <Link href="/form">
+            <button className="px-8 py-4 max-md:text-sm bg-white text-purple-600 rounded-full text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-2">
+              Попробовать GiftGenius
+              <Sparkles className="w-5 h-5" />
+            </button>
+          </Link>
         </div>
       </Container>
     </section>
