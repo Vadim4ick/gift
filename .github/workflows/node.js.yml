@@ -42,7 +42,7 @@ jobs:
         run: |
           rsync -az --delete \
             -e "ssh -o StrictHostKeyChecking=no" \
-            # --exclude='package-lock.json' \
+            --exclude='package-lock.json' \
             --exclude='node_modules' \
             --exclude='public/media' \
             ./ ${{ secrets.SERVER_USER }}@${{ secrets.REMOTE_HOST }}:/home/${{ secrets.SERVER_USER }}/giftjs-app
@@ -65,7 +65,7 @@ jobs:
           cp ~/secrets/giftjs/.env .env
 
           echo "📦 Устанавливаем зависимости!!!"
-          npm ci
+          npm i
 
 
           echo "⚙️ Билд  Next.js"
