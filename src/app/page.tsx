@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function GiftGenius() {
   return (
-    <div className="mt-[var(--header-height)] grow">
+    <div className="mt-(--header-height) grow">
       <Hero />
 
       <HowItWorks />

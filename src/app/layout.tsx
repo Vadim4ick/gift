@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/shared/css/globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import YandexMetrikaContainer from "@/shared/lib/yandex-metrika";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +25,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const analyticsEnabled = !!(process.env.NODE_ENV === "production");
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body
@@ -36,6 +38,7 @@ export default function RootLayout({
 
           <Footer />
         </main>
+        <YandexMetrikaContainer enabled={analyticsEnabled} />
       </body>
     </html>
   );
