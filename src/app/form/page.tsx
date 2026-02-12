@@ -3,7 +3,9 @@ import { ResultsGifts } from "@/modules/form/results-gifts";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Подбор подарка | Gifts",
+  title: "Бесплатная нейросеть для генерации подарков GiftGenius",
+  description:
+    "Искусственный интеллект анализирует характер, интересы и повод, чтобы предложить подарок, который запомнится навсегда",
 };
 
 const FormPage = () => {
