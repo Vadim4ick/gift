@@ -5,7 +5,8 @@ import { CtaBaner } from "@/modules/home/CtaBaner";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Главная | Gifts",
+  title: "Идеальный подарок с ии бесплатно - GiftGenius поможет за минуту",
+  description: "GiftGenius - бесплатно подобрать подарок",
 };
 
 export default function GiftGenius() {

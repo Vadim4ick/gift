@@ -14,7 +14,7 @@ const Categories = memo(() => {
           <h2 className="text-5xl font-bold mb-4 text-gray-800">
             Подарки для{" "}
             <span className="bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              любого случая
+              любого случая с нейросетью
             </span>
           </h2>
           <p className="text-xl text-gray-600">

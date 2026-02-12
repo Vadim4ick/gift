@@ -15,12 +15,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Gifts",
-  description:
-    "Искусственный интеллект анализирует характер, интересы и повод, чтобы предложить подарок, который запомнится навсегда",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

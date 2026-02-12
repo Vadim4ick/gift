@@ -11,7 +11,7 @@ const Header = () => {
           <div className="w-10 h-10 bg-linear-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center rotate-12 hover:rotate-0 transition-transform duration-300">
             <Gift className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <span className="hidden md:block text-2xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             GiftGenius
           </span>
         </Link>
@@ -38,7 +38,7 @@ const Header = () => {
           </Link>
 
           <Link href="/form">
-            <Button>Начать</Button>
+            <Button>Сгенерировать подарок</Button>
           </Link>
         </div>
       </Container>

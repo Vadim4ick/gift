@@ -16,7 +16,7 @@ const Hero = () => {
 
         <h1 className="text-4xl md:text-7xl font-bold mb-6 max-md:mb-3 leading-tight">
           <span className="bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-            Идеальный подарок
+            Идеальный подарок с ИИ
           </span>
           <br />
           <span className="text-gray-800">за 60 секунд</span>
