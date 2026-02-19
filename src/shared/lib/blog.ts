@@ -10,6 +10,7 @@ export type BlogPostMeta = {
   title: string;
   date: string;
   description?: string;
+  image?: string;
 };
 
 export function getPostSlugs() {
@@ -26,7 +27,7 @@ export function getPostBySlug(slug: string) {
   const filePath = fs.existsSync(fullPathMdx) ? fullPathMdx : fullPathMd;
   const raw = fs.readFileSync(filePath, "utf8");
 
-  const { data, content } = matter(raw);
+  const { data } = matter(raw);
   return {
     slug,
     meta: {
@@ -34,8 +35,8 @@ export function getPostBySlug(slug: string) {
       title: String(data.title ?? slug),
       date: String(data.date ?? ""),
       description: data.description ? String(data.description) : undefined,
+      image: data.image ? String(data.image) : undefined,
     } satisfies BlogPostMeta,
-    content,
   };
 }
 
