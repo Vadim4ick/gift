@@ -2,6 +2,7 @@ import { getAllPostsMeta } from "@/shared/lib/blog";
 import { Container } from "@/shared/ui/Container";
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Блог | Gifts",
@@ -11,7 +12,7 @@ const PageBlog = () => {
   const posts = getAllPostsMeta();
 
   return (
-    <section className="grow mt-[var(--header-height)] py-6">
+    <section className="grow mt-(--header-height) py-6">
       <Container>
         <div className="flex flex-col gap-4">
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
@@ -28,6 +29,17 @@ const PageBlog = () => {
                            hover:-translate-y-0.5 hover:border-border hover:bg-background/80 hover:shadow-sm
                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
                 >
+                  {p.image && (
+                    <div className="mb-4 -mx-5 -mt-5 overflow-hidden rounded-t-2xl">
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        width={600}
+                        height={320}
+                        className="h-40 w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  )}
                   {/* Title */}
                   <h2 className="text-lg font-semibold leading-snug tracking-tight">
                     {p.title}
