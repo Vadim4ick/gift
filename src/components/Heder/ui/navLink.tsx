@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { NavLinkProps } from "../model/types";
+import { memo } from "react";
 
-export const NavLink = ({ href, label }: NavLinkProps) => (
+export const NavLink = memo(({ href, label }: NavLinkProps) => (
   <Link
     key={href}
     href={href}
@@ -9,4 +10,4 @@ export const NavLink = ({ href, label }: NavLinkProps) => (
   >
     {label}
   </Link>
-);
+));
