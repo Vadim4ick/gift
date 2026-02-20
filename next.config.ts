@@ -6,6 +6,7 @@ const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
   options: {
     remarkPlugins: [
+      "remark-gfm",
       "remark-frontmatter",
       ["remark-mdx-frontmatter", { name: "meta" }],
     ],

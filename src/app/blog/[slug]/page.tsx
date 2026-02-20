@@ -61,7 +61,7 @@ export default async function BlogPostPage({
     // Важно: благодаря @next/mdx импортируем файл как компонент ниже (см. следующий шаг)
     // Здесь оставим метадату и рендер контента через MDX-импорт
     return (
-      <section className="grow mt-(--header-height) py-6">
+      <section className="grow mt-[var(--header-height)] py-6">
         <Container>
           <article
             className="
@@ -89,6 +89,8 @@ export default async function BlogPostPage({
               prose-h1:text-2xl sm:prose-h1:text-3xl lg:prose-h1:text-4xl
               prose-h2:text-xl sm:prose-h2:text-2xl lg:prose-h2:text-3xl
               prose-h3:text-lg sm:prose-h3:text-xl
+
+              prose-table:border-collapse prose-th:border prose-th:p-2 prose-td:border prose-td:p-2
             "
           >
             <h1>{post.meta.title}</h1>
