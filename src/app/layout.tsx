@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/shared/css/globals.css";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/Heder/Header";
 import { Footer } from "@/components/Footer";
 import YandexMetrikaContainer from "@/shared/lib/yandex-metrika";
 
