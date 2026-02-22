@@ -2,7 +2,6 @@
 
 import { cn } from "@/shared/lib/utils";
 import { MenuIcon, XIcon } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import { Container } from "../../shared/ui/Container";
 import { navItemList } from "./model/nav-link-items";
@@ -12,7 +11,7 @@ import { MobileNav } from "./ui/mobile-nav";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+
   const handleClose = useCallback(() => {
     setIsOpen(false);
   }, []);
@@ -30,11 +29,7 @@ const Header = () => {
             isOpen ? "translate-x-0" : "-translate-x-full",
           )}
         >
-          <MobileNav
-            data={navItemList}
-            onClose={handleClose}
-            pathname={pathname}
-          />
+          <MobileNav data={navItemList} onClose={handleClose} />
         </div>
         <button
           className="z-50 p-2 md:hidden"
