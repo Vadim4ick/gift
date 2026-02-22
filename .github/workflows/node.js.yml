@@ -76,6 +76,9 @@ jobs:
           if [ -f ecosystem.config.cjs ]; then
             cp ecosystem.config.cjs artifact/
           fi
+          # контент блога, чтобы fs его видел в проде
+          mkdir -p artifact/src/shared/content
+          cp -r src/shared/content/blog artifact/src/shared/content/blog
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
