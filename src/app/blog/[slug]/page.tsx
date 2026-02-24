@@ -90,7 +90,9 @@ export default async function BlogPostPage({
               prose-h2:text-xl sm:prose-h2:text-2xl lg:prose-h2:text-3xl
               prose-h3:text-lg sm:prose-h3:text-xl
 
-              prose-table:border-collapse prose-th:border prose-th:p-2 prose-td:border prose-td:p-2
+              [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_table]:whitespace-nowrap 
+              sm:[&_table]:table sm:[&_table]:whitespace-normal
+              prose-table:my-6 prose-table:border-collapse prose-th:border prose-th:p-2 prose-td:border prose-td:p-2
             "
           >
             <h1>{post.meta.title}</h1>
