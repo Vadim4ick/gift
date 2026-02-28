@@ -8,7 +8,7 @@ const Container = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("max-w-7xl mx-auto px-6", className)}>{children}</div>
+    <div className={cn("max-w-4xl mx-auto px-6", className)}>{children}</div>
   );
 };
 
