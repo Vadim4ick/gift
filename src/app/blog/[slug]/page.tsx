@@ -68,6 +68,7 @@ export default async function BlogPostPage({
               prose prose-zinc max-w-none
               dark:prose-invert
               prose-headings:scroll-mt-[calc(var(--header-height)+24px)]
+              prose-a:text-purple-600 dark:prose-a:text-purple-400
               prose-a:font-medium prose-a:no-underline hover:prose-a:underline
               prose-pre:rounded-xl prose-pre:border prose-pre:bg-zinc-950 prose-pre:text-zinc-50
               prose-code:rounded prose-code:bg-zinc-100 prose-code:px-1 prose-code:py-0.5
