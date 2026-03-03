@@ -45,3 +45,74 @@ export function getAllPostsMeta(): BlogPostMeta[] {
     .map((slug) => getPostBySlug(slug).meta)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
+
+export function slugifyRu(input: string) {
+  const map: Record<string, string> = {
+    а: "a",
+    б: "b",
+    в: "v",
+    г: "g",
+    д: "d",
+    е: "e",
+    ё: "e",
+    ж: "zh",
+    з: "z",
+    и: "i",
+    й: "y",
+    к: "k",
+    л: "l",
+    м: "m",
+    н: "n",
+    о: "o",
+    п: "p",
+    р: "r",
+    с: "s",
+    т: "t",
+    у: "u",
+    ф: "f",
+    х: "h",
+    ц: "ts",
+    ч: "ch",
+    ш: "sh",
+    щ: "sch",
+    ъ: "",
+    ы: "y",
+    ь: "",
+    э: "e",
+    ю: "yu",
+    я: "ya",
+  };
+
+  const s = input
+    .trim()
+    .toLowerCase()
+    .replace(/[\u0300-\u036f]/g, ""); // на всякий (диакритика)
+
+  let out = "";
+  for (const ch of s) {
+    if (map[ch]) out += map[ch];
+    else if (/[a-z0-9]/.test(ch)) out += ch;
+    else if (/\s|_|-/.test(ch)) out += "-";
+    else if (ch === "&") out += "-and-";
+    else out += ""; // выкидываем пунктуацию/символы
+  }
+
+  out = out.replace(/-+/g, "-").replace(/^-|-$/g, "");
+
+  return out || "post";
+}
+
+export function ensureUniqueSlug(baseSlug: string, dir: string) {
+  let slug = baseSlug;
+  let i = 2;
+
+  while (
+    fs.existsSync(path.join(dir, `${slug}.mdx`)) ||
+    fs.existsSync(path.join(dir, `${slug}.md`))
+  ) {
+    slug = `${baseSlug}-${i}`;
+    i += 1;
+  }
+
+  return slug;
+}

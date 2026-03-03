@@ -154,7 +154,7 @@ export function CreatePostForm() {
               setTitle(e.target.value);
               if (errors.title) setErrors((p) => ({ ...p, title: undefined }));
             }}
-            placeholder="Title (EN)"
+            placeholder="Title"
           />
           {errors.title && (
             <p className="text-sm text-red-600">{errors.title}</p>

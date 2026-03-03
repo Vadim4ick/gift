@@ -1,7 +1,13 @@
+import { Container } from "@/shared/ui/Container";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 type PageProps = {
   searchParams: Promise<{ next?: string; error?: string }>;
+};
+
+export const metadata: Metadata = {
+  title: "Авторизация",
 };
 
 export default async function LoginPage({ searchParams }: PageProps) {
@@ -41,33 +47,37 @@ export default async function LoginPage({ searchParams }: PageProps) {
   }
 
   return (
-    <main className="min-h-[70vh] flex items-center justify-center px-4">
-      <form
-        action={loginAction}
-        className="w-full max-w-sm space-y-3 border rounded-xl p-4"
-      >
-        <h1 className="text-xl font-semibold">Вход</h1>
+    <section className="pt-10 pb-20 px-4 mt-(--header-height) grow">
+      <Container>
+        <form
+          action={loginAction}
+          className="w-full max-w-sm space-y-3 border rounded-xl p-4"
+        >
+          <h1 className="text-xl font-semibold">Вход</h1>
 
-        {error && (
-          <div className="text-sm text-red-600">Неверный логин или пароль</div>
-        )}
+          {error && (
+            <div className="text-sm text-red-600">
+              Неверный логин или пароль
+            </div>
+          )}
 
-        <input
-          name="login"
-          placeholder="Логин"
-          className="w-full border rounded-lg px-3 py-2"
-          autoComplete="username"
-        />
-        <input
-          name="password"
-          placeholder="Пароль"
-          type="password"
-          className="w-full border rounded-lg px-3 py-2"
-          autoComplete="current-password"
-        />
+          <input
+            name="login"
+            placeholder="Логин"
+            className="w-full border rounded-lg px-3 py-2"
+            autoComplete="username"
+          />
+          <input
+            name="password"
+            placeholder="Пароль"
+            type="password"
+            className="w-full border rounded-lg px-3 py-2"
+            autoComplete="current-password"
+          />
 
-        <button className="w-full rounded-lg px-3 py-2 border">Войти</button>
-      </form>
-    </main>
+          <button className="w-full rounded-lg px-3 py-2 border">Войти</button>
+        </form>
+      </Container>
+    </section>
   );
 }
