@@ -130,3 +130,195 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* ===== MDX Editor container (рамка + фон) ===== */
+.mdx-editor {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* ===== Toolbar (если используешь toolbarPlugin) ===== */
+.mdx-editor ._toolbarRoot_ {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #f8fafc;
+  padding: 10px 12px;
+}
+
+/* ===== Content area ===== */
+.mdx-content {
+  padding: 16px 18px;
+  min-height: 260px;
+  outline: none;
+
+  /* текст */
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(15, 23, 42, 0.95);
+
+  /* чтобы длинные слова/URL не ломали верстку */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Отступы между блоками */
+.mdx-content > * + * {
+  margin-top: 12px;
+}
+
+/* ===== Headings ===== */
+.mdx-content h1,
+.mdx-content h2,
+.mdx-content h3,
+.mdx-content h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-top: 18px;
+}
+
+.mdx-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+.mdx-content h1 {
+  font-size: 32px;
+}
+.mdx-content h2 {
+  font-size: 24px;
+}
+.mdx-content h3 {
+  font-size: 20px;
+}
+.mdx-content h4 {
+  font-size: 18px;
+}
+
+/* чтобы первый заголовок не имел лишнего верхнего отступа */
+.mdx-content :is(h1, h2, h3, h4):first-child {
+  margin-top: 0;
+}
+
+/* ===== Paragraph ===== */
+.mdx-content p {
+  margin: 0;
+}
+
+/* ===== Links ===== */
+.mdx-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mdx-content a:hover {
+  opacity: 0.85;
+}
+
+/* ===== Lists ===== */
+.mdx-content ul,
+.mdx-content ol {
+  padding-left: 22px;
+  margin: 0;
+}
+
+.mdx-content ul {
+  list-style: disc;
+}
+.mdx-content ol {
+  list-style: decimal;
+}
+
+.mdx-content li {
+  margin: 6px 0;
+}
+
+.mdx-content li > ul,
+.mdx-content li > ol {
+  margin-top: 8px;
+}
+
+/* ===== Blockquote ===== */
+.mdx-content blockquote {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 4px solid rgba(37, 99, 235, 0.55);
+  background: rgba(37, 99, 235, 0.06);
+  border-radius: 10px;
+}
+
+/* ===== Inline code ===== */
+.mdx-content code {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.95em;
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  background: rgba(2, 6, 23, 0.06);
+}
+
+/* ===== Code blocks ===== */
+.mdx-content pre {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.92);
+  color: rgba(255, 255, 255, 0.92);
+  overflow: auto;
+}
+
+.mdx-content pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 14px;
+  color: inherit;
+}
+
+/* ===== HR ===== */
+.mdx-content hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 18px 0;
+}
+
+/* ===== Tables (если будут) ===== */
+.mdx-content table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.mdx-content th,
+.mdx-content td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  vertical-align: top;
+}
+
+.mdx-content th {
+  background: rgba(2, 6, 23, 0.04);
+  font-weight: 600;
+}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width: 640px) {
+  .mdx-content {
+    padding: 14px 14px;
+    font-size: 15px;
+  }
+  .mdx-content h1 {
+    font-size: 26px;
+  }
+  .mdx-content h2 {
+    font-size: 21px;
+  }
+  .mdx-content h3 {
+    font-size: 18px;
+  }
+}
